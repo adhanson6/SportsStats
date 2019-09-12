@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.ahansondev</groupId>
-	<artifactId>sportsstats</artifactId>
+	<artifactId>SportsStats</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>sportsstats</name>
+	<name>SportsStats</name>
 	<description>Sports stats REST project</description>
 
 	<properties>
