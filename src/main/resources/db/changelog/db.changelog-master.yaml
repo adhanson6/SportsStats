@@ -1,0 +1,31 @@
+databaseChangeLog:
+  # Initial Sports table
+  - changeSet:
+      id: 1
+      author: alex
+      changes:
+        - createTable:
+            tableName: sport
+            columns:
+              - column:
+                  name: sportId
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: createdAt
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updatedAt
+                  type: datetime
+                  constraints:
+                    nullable: false
