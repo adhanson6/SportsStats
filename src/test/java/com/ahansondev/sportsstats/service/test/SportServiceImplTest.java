@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ import static org.mockito.BDDMockito.given;
  * Unit test class to test the {@link SportServiceImpl} class.
  */
 @RunWith(MockitoJUnitRunner.class)
+@ActiveProfiles("test")
 public class SportServiceImplTest {
 
     // Constants
