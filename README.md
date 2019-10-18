@@ -1,32 +1,32 @@
 # SportsStats
 
-###To run locally:
+### To run locally:
 ```
 ./mvnw spring-boot:run
 ```
 
-###To test locally: 
+### To test locally: 
 ```
 ./mvnw test
 ```
 
-###To package in JAR:
+### To package in JAR:
 ```
 ./mvnw clean package spring-boot:repackage
 ```
 
-###To deploy:
+### To deploy:
 ```
 eb deploy
 ```
 
-###Requirements:
+### Requirements:
 - Maven
 - Java 8
 - EB CLI
 - MySql
 
-###CI Server:
+### CI Server:
 - Travis-CI
 
 
