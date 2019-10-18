@@ -29,7 +29,7 @@ databaseChangeLog:
                   type: datetime
                   constraints:
                     nullable: false
-  # Initial Conference table
+  # Initial cfb_conference table
   - changeSet:
       id: 2
       author: alex
@@ -71,3 +71,200 @@ databaseChangeLog:
             constraintName: fk_cfb_sport_conference
             referencedTableName: sport
             referencedColumnNames: sportId
+# Initial cfb_season, cfb_game_type, cfb_team, cfb_team_game Tables
+  - changeSet:
+      id: 3
+      author: alex
+      changes:
+        - createTable:
+            tableName: cfb_season
+            columns:
+              - column:
+                  name: seasonId
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: season
+                  type: varchar(5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: createdAt
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updatedAt
+                  type: datetime
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: cfb_game_type
+            columns:
+              - column:
+                  name: gameTypeId
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: gameType
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: createdAt
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updatedAt
+                  type: datetime
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: cfb_team
+            columns:
+              - column:
+                  name: teamId
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: schoolName
+                  type: varchar(100)
+              - column:
+                  name: mascotName
+                  type: varchar(100)
+              - column:
+                  name: teamName
+                  type: varchar(100)
+              - column:
+                  name: abbreviation
+                  type: varchar(100)
+              - column:
+                  name: primaryColor
+                  type: varchar(100)
+              - column:
+                  name: secondaryColor
+                  type: varchar(100)
+              - column:
+                  name: tertiaryColor
+                  type: varchar(100)
+              - column:
+                  name: conferenceId
+                  type: int
+              - column:
+                  name: createdAt
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updatedAt
+                  type: datetime
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: cfb_team
+            baseColumnNames: conferenceId
+            constraintName: fk_cfb_team_conference
+            referencedTableName: cfb_conference
+            referencedColumnNames: conferenceId
+        - createTable:
+            tableName: cfb_team_game
+            columns:
+              - column:
+                  name: teamGameId
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: homeTeamId
+                  type: int
+              - column:
+                  name: awayTeamId
+                  type: int
+              - column:
+                  name: gameTypeId
+                  type: int
+              - column:
+                  name: seasonId
+                  type: int
+              - column:
+                  name: homeScore
+                  type: int
+              - column:
+                  name: awayScore
+                  type: int
+              - column:
+                  name: result
+                  type: varchar(10)
+              - column:
+                  name: homeFlag
+                  type: boolean
+              - column:
+                  name: totalYards
+                  type: double
+              - column:
+                  name: rushingYards
+                  type: double
+              - column:
+                  name: rushingAttempts
+                  type: int
+              - column:
+                  name: passingYards
+                  type: double
+              - column:
+                  name: passingAttempts
+                  type: int
+              - column:
+                  name: passingCompletions
+                  type: int
+              - column:
+                  name: sacks
+                  type: double
+              - column:
+                  name: penalties
+                  type: int
+              - column:
+                  name: createdAt
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updatedAt
+                  type: datetime
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: cfb_team_game
+            baseColumnNames: homeTeamId
+            constraintName: fk_cfb_team_game_home_team
+            referencedTableName: cfb_team
+            referencedColumnNames: teamId
+        - addForeignKeyConstraint:
+            baseTableName: cfb_team_game
+            baseColumnNames: awayTeamId
+            constraintName: fk_cfb_team_game_away_team
+            referencedTableName: cfb_team
+            referencedColumnNames: teamId
+        - addForeignKeyConstraint:
+            baseTableName: cfb_team_game
+            baseColumnNames: gameTypeId
+            constraintName: fk_cfb_team_game_game_type
+            referencedTableName: cfb_game_type
+            referencedColumnNames: gameTypeId
+        - addForeignKeyConstraint:
+            baseTableName: cfb_team_game
+            baseColumnNames: seasonId
+            constraintName: fk_cfb_team_game_season
+            referencedTableName: cfb_season
+            referencedColumnNames: seasonId
